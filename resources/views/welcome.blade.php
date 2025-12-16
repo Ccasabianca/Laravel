@@ -5,6 +5,9 @@
 @section('content')
 <h2>Bienvenue sur le site de {{ $name }}</h2>
 @forelse ($articles as $article)
+@if ($loop->last)
+@break
+@endif
 <h3>{{ $article['title'] }}</h3>
 <p>{{ $article['description'] }}</p>
 @empty
