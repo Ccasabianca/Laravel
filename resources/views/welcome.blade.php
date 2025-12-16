@@ -9,7 +9,7 @@
 @break
 @endif
 <h3>{{ $article['title'] }}</h3>
-<p>{{ $article['description'] }}</p>
+<p>{{ Str::limit($article['description'], 30) }}</p>
 @empty
 <p>Aucun article</p>
 @endforelse
