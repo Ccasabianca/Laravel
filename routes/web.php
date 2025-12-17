@@ -12,3 +12,11 @@ Route::get('/article/{id}', [ArticleController::class, 'show'])->name('article.d
 Route::fallback(function () {
     return view('errors.not-found');
 });
+
+Route::prefix('article')->group(function () {
+    Route::get('/creer', [ArticleController::class, 'create'])->name('article.create');
+    Route::get('/modifier/{id}', [ArticleController::class, 'update'])->name('article.update')
+        ->where('id', '[0-9]+');
+    Route::get('/supprimer/{id}', [ArticleController::class, 'delete'])->name('article.delete')
+        ->where('id', '[0-9]+');
+});
