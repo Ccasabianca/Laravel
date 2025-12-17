@@ -5,10 +5,7 @@
 @section('content')
 <h2>Bienvenue sur le site de {{ $name }}</h2>
 @forelse ($articles as $article)
-<h3>
-    <a href="{{ url('articles/' . $article->id) }}">{{ $article->title }}</a>
-</h3>
-<p>{{ Str::limit($article->description, 100) }}</p>
+<x-article :id="$article->id" :title="$article->title" :description="Str::limit($article->description, 100)" />
 @empty
 <p>Aucun article</p>
 @endforelse

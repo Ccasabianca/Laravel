@@ -6,8 +6,6 @@ use App\Http\Controllers\ArticleController;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
-Route::get('/article/{id}', [ArticleController::class, 'show'])->name('article.details')
-    ->where('id', '[0-9]+');
 
 Route::fallback(function () {
     return view('errors.not-found');
@@ -18,5 +16,7 @@ Route::prefix('article')->group(function () {
     Route::get('/modifier/{id}', [ArticleController::class, 'update'])->name('article.update')
         ->where('id', '[0-9]+');
     Route::get('/supprimer/{id}', [ArticleController::class, 'delete'])->name('article.delete')
+        ->where('id', '[0-9]+');
+    Route::get('/{id}', [ArticleController::class, 'show'])->name('articles.show')
         ->where('id', '[0-9]+');
 });

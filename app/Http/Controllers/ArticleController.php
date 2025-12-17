@@ -33,7 +33,7 @@ class ArticleController extends Controller
             "description" => "Plus de liberté, mais aussi plus de solitude."
         ]);
 
-        return redirect('/');
+        return redirect()->route('home');
     }
 
     public function update($id)
@@ -47,13 +47,18 @@ class ArticleController extends Controller
             ]);
         }
 
-        return redirect('/');
+        return redirect()->route('home');
     }
 
     public function delete($id)
     {
+
         $article = Article::find($id);
+
+        if (!$article) {
+            abort(404);
+        }
         $article->delete();
-        return redirect('/');
+        return redirect()->route('home');
     }
 }
